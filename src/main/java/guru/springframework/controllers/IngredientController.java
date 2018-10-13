@@ -62,7 +62,9 @@ public class IngredientController {
         //init uom
         ingredientCommand.setUom(new UnitOfMeasureCommand());
 
-        model.addAttribute("uomList",  unitOfMeasureService.listAllUoms());
+        // the "collectList()" and "block()" commands are used to actively collate the data from the dB and publish it
+        // as, in this case, a model attribute
+        model.addAttribute("uomList",  unitOfMeasureService.listAllUoms().collectList().block());
 
         return "recipe/ingredient/ingredientform";
     }
