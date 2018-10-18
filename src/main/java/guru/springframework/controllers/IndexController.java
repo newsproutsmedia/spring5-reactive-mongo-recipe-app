@@ -23,8 +23,11 @@ public class IndexController {
     public String getIndexPage(Model model) {
         log.debug("Getting Index page");
 
-        model.addAttribute("recipes", recipeService.getRecipes().collectList().block());
+        // not triggered until thymeleaf template is activated and requests the Flux objects from getRecipes()
+        model.addAttribute("recipes", recipeService.getRecipes());
 
         return "index";
     }
+
+
 }
